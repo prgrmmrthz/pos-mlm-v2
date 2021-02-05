@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Table as BsTable } from 'react-bootstrap';
+import { GlobalContext } from '../../context/GlobalState';
 
 export const Table = () => {
+    const context = useContext(GlobalContext);
+    console.log('context', context);
+    
     return (
         <BsTable striped bordered hover size="sm">
             <thead>

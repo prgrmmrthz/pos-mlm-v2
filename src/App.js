@@ -5,10 +5,11 @@ import { Header } from "./components/Header";
 import { SideNav } from "./components/SideNav";
 import { BrowserRouter as Router } from "react-router-dom";
 import { MainContent } from "./components/MainContent";
+import { GlobalProvider } from './context/GlobalState';
 
 function App() {
   return (
-    <>
+    <GlobalProvider>
       <Container fluid>
         <Router>
           <Row>
@@ -26,7 +27,7 @@ function App() {
           </Row>
         </Router>
       </Container>
-    </>
+    </GlobalProvider>
   );
 }
 
