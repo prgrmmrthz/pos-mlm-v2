@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import AppReducer from './AppReducer';
 
-axios.defaults.baseURL = 'http://localhost:8000/api/v1';
+axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 
 const initialState = {
     productsList: [],
@@ -21,7 +21,15 @@ export const GlobalProvider = ({children}) => {
     //Actions
     async function getProductsList() {
         try{
-            const res = await axios.get('/product/index');
+            const res = await axios({
+                method: 'get',
+                url: '/product/index',
+                params: {
+                    name_search: "a",
+                    name_order: "desc",
+                    items_per_page: 2
+                } 
+            });
             dispatch({
                 type: 'GET_PRODUCTSLIST',
                 payload: res.data.data
