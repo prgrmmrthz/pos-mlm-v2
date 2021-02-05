@@ -22,7 +22,7 @@ const AppReducer = (state, action) => {
         case 'PRODUCT_ERROR':
             return {
                 ...state,
-                error: action.payload
+                errorX: action.payload
             }
         default: 
             return state;

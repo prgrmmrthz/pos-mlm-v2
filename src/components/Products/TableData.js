@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import { Button } from 'react-bootstrap';
 
 import { GlobalContext } from '../../context/GlobalState';
+import { numberWithCommas } from '../../utils/format';
 
 export const TableData = ({product}) => {
   const {deleteProduct} = useContext(GlobalContext);
@@ -9,9 +10,9 @@ export const TableData = ({product}) => {
   return (
     <tr>
       <td>{product.name}</td>
-      <td>{product.retail_price}</td>
-      <td>{product.unit_price}</td>
-      <td>{product.wholesale_price}</td>
+      <td>{numberWithCommas(product.retail_price)}</td>
+      <td>{numberWithCommas(product.unit_price)}</td>
+      <td>{numberWithCommas(product.wholesale_price)}</td>
       <td width={25}>
         <Button variant="warning" size="sm">
           E

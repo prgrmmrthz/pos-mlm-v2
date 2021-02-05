@@ -1,21 +1,20 @@
 import React, {useState, useContext} from 'react';
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
 
 import { GlobalContext } from '../../context/GlobalState';
 
 export const EntryControls = () => {
-    const {addProduct} = useContext(GlobalContext);
+    const {addProduct, errorX } = useContext(GlobalContext);
     const [show, setShow] = useState(false);
     const [name, setName] = useState("");
     const [retail_price, setRetail_price] = useState(0);
     const [unit_price, setUnit_price] = useState(0);
     const [wholesale_price, setWholesale_price] = useState(0);
 
-    const alert = withReactContent(Swal);
-    const handleShow = () => setShow(!show);
+    const handleShow = () => {
+        setShow(!show)
+    };
 
     const onSubmit = e => {
         e.preventDefault();
@@ -28,11 +27,26 @@ export const EntryControls = () => {
         }
 
         addProduct(a);
-        setShow(false);
-        setName("");
-        setRetail_price(0);
-        setUnit_price(0);
-        setWholesale_price(0);
+        console.debug(typeof(errorX));
+        if(errorX){
+            alert("error");
+           /*  alert.fire({
+                title: <p>Hello World</p>,
+                didOpen: () => {
+                  // `MySwal` is a subclass of `Swal`
+                  //   with all the same instance & static methods
+                  alert.clickConfirm()
+                }
+              }).then(() => {
+                return alert.fire(<p>Shorthand works too</p>)
+              }) */
+        }else{
+            setName("");
+            setRetail_price(0);
+            setUnit_price(0);
+            setWholesale_price(0);
+            setShow(false);
+        }
     }
 
     return (

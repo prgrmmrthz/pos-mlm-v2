@@ -3,13 +3,18 @@ import axios from 'axios';
 
 import AppReducer from './AppReducer';
 
+/* import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+ */
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 
 const initialState = {
     productsList: [],
-    error: null,
+    errorX: null,
     loading: true
 }
+
+//const MySwal = withReactContent(Swal);
 
 //Create Context
 export const GlobalContext = createContext(initialState);
@@ -34,6 +39,7 @@ export const GlobalProvider = ({children}) => {
                 payload: res.data.data
             });
         }catch(err){
+            console.debug(err);
             dispatch({
                 type: 'PRODUCT_ERROR',
                 payload: err.response.data.message
@@ -70,9 +76,17 @@ export const GlobalProvider = ({children}) => {
                 payload: res.data.data
             });
         } catch (err) {
+            /* MySwal.fire({
+                didOpen: () => {
+                  MySwal.clickConfirm()
+                }
+              }).then(() => {
+                return MySwal.fire(<p>{JSON.stringify(err.response.data.errors)}</p>)
+            }); */
+
             dispatch({
                 type: 'PRODUCT_ERROR',
-                payload: err.response.data.message
+                payload: err.response.data.errors
             }); 
         }
     }
