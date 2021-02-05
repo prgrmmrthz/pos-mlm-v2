@@ -16,8 +16,10 @@ export const Table = () => {
         <BsTable responsive striped bordered hover size="sm">
             <thead>
                 <tr>
-                    <th>id</th>
                     <th>Name</th>
+                    <th>Retail Price</th>
+                    <th>Unit Price</th>
+                    <th>Wholesale Price</th>
                     <th width={25}></th>
                     <th width={25}></th>
                 </tr>

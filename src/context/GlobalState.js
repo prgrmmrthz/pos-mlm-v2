@@ -25,9 +25,8 @@ export const GlobalProvider = ({children}) => {
                 method: 'get',
                 url: '/product/index',
                 params: {
-                    name_search: "a",
-                    name_order: "desc",
-                    items_per_page: 2
+                    name_order: "asc",
+                    items_per_page: 10
                 } 
             });
             dispatch({
@@ -42,18 +41,40 @@ export const GlobalProvider = ({children}) => {
         }
     }
 
-    function deleteProduct(id){
-        dispatch({
-            type: 'DELETE_PRODUCT',
-            payload: id
-        });
+    async function deleteProduct(id){
+        try {
+            await axios.delete('/product/destroy/'+id);
+            dispatch({
+                type: 'DELETE_PRODUCT',
+                payload: id
+            });
+        } catch (err) {
+            dispatch({
+                type: 'PRODUCT_ERROR',
+                payload: err.response.data.message
+            }); 
+        }
     }
 
-    function addProduct(product){
-        dispatch({
-            type: 'ADD_PRODUCT',
-            payload: product
-        });
+    async function addProduct(product){
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        try {
+            const res = await axios.post('/product/store', product, config);
+            dispatch({
+                type: 'ADD_PRODUCT',
+                payload: res.data.data
+            });
+        } catch (err) {
+            dispatch({
+                type: 'PRODUCT_ERROR',
+                payload: err.response.data.message
+            }); 
+        }
     }
 
     return (

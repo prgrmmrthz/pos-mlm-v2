@@ -21,12 +21,18 @@ export const EntryControls = () => {
         e.preventDefault();
         const a = {
             id: Math.floor(Math.random() * 100000000),
-            name
+            name,
+            retail_price,
+            unit_price,
+            wholesale_price
         }
 
         addProduct(a);
         setShow(false);
         setName("");
+        setRetail_price(0);
+        setUnit_price(0);
+        setWholesale_price(0);
     }
 
     return (

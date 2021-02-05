@@ -8,8 +8,10 @@ export const TableData = ({product}) => {
 
   return (
     <tr>
-      <td>{product.id}</td>
       <td>{product.name}</td>
+      <td>{product.retail_price}</td>
+      <td>{product.unit_price}</td>
+      <td>{product.wholesale_price}</td>
       <td width={25}>
         <Button variant="warning" size="sm">
           E
@@ -19,8 +21,7 @@ export const TableData = ({product}) => {
         <Button 
           variant="danger" 
           size="sm"
-          onClick={()=>deleteProduct(product.id)}
-        >
+          onClick={()=>deleteProduct(product.id)}>
           X
         </Button>
       </td>
