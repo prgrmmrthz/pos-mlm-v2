@@ -12,6 +12,8 @@ export const Products = () => {
                     <EntryControls />
                 </Col>
             </Row>
+            <br />
+            <br />
             <Row>
                 <Col>
                     <Table />

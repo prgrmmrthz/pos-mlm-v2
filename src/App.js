@@ -22,6 +22,7 @@ function App() {
               <SideNav />
             </Col>
             <Col sm={10}>
+              <br />
               <MainContent />
             </Col>
           </Row>

@@ -1,39 +1,33 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import { Table as BsTable } from 'react-bootstrap';
+
 import { GlobalContext } from '../../context/GlobalState';
+import {TableData} from './TableData';
 
 export const Table = () => {
-    const context = useContext(GlobalContext);
-    console.log('context', context);
+    const {productsList, getProductsList } = useContext(GlobalContext);
+
+    useEffect(()=>{
+        getProductsList();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     
     return (
-        <BsTable striped bordered hover size="sm">
+        <BsTable responsive striped bordered hover size="sm">
             <thead>
                 <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
+                    <th>id</th>
+                    <th>Name</th>
+                    <th width={25}></th>
+                    <th width={25}></th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                </tr>
-                <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                </tr>
-                <tr>
-                <td>3</td>
-                <td colSpan="2">Larry the Bird</td>
-                <td>@twitter</td>
-                </tr>
+                {productsList.map(
+                    product => (
+                        <TableData key={product.id} product={product} />
+                    )
+                )}
             </tbody>
         </BsTable>
     )

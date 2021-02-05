@@ -1,33 +1,33 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
+import { GlobalContext } from '../../context/GlobalState';
+
 export const EntryControls = () => {
+    const {addProduct} = useContext(GlobalContext);
     const [show, setShow] = useState(false);
-    const [name, setName] = useState(false);
+    const [name, setName] = useState("");
     const [retail_price, setRetail_price] = useState(0);
     const [unit_price, setUnit_price] = useState(0);
     const [wholesale_price, setWholesale_price] = useState(0);
 
     const alert = withReactContent(Swal);
+    const handleShow = () => setShow(!show);
 
-    const handleClose = () => {
-        setShow(false)
-        alert.fire({
-            title: <p>Hello World</p>,
-            footer: 'Copyright 2018',
-            didOpen: () => {
-              // `MySwal` is a subclass of `Swal`
-              //   with all the same instance & static methods
-              alert.clickConfirm()
-            }
-          }).then(() => {
-            return alert.fire(<p>Shorthand works too</p>)
-          })
-    };
-    const handleShow = () => setShow(true);
+    const onSubmit = e => {
+        e.preventDefault();
+        const a = {
+            id: Math.floor(Math.random() * 100000000),
+            name
+        }
+
+        addProduct(a);
+        setShow(false);
+        setName("");
+    }
 
     return (
         <>
@@ -45,12 +45,12 @@ export const EntryControls = () => {
                             </Navbar.Collapse>
             </Navbar>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleShow}>
             <Modal.Header closeButton>
             <Modal.Title>Product Form</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Form>
+                <Form onSubmit={onSubmit}>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Product Name</Form.Label>
                         <Form.Control 
@@ -93,11 +93,6 @@ export const EntryControls = () => {
                     </Button>
                 </Form>
             </Modal.Body>
-            <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-                Close
-            </Button>
-            </Modal.Footer>
             </Modal>
         </>
     );
