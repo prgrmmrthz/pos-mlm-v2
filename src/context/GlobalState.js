@@ -39,7 +39,7 @@ export const GlobalProvider = ({children}) => {
                 payload: res.data.data
             });
         }catch(err){
-            console.debug(err);
+            //console.debug(err);
             dispatch({
                 type: 'PRODUCT_ERROR',
                 payload: err.response.data.message

@@ -4,7 +4,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { Products } from "./Products/index";
+import { Products } from '../pages/Products/index';
 import { Sales } from "./Sales";
 
 export const MainContent = () => {
