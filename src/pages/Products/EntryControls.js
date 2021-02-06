@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
-import MyInput from "../../components/controls/Input";
+import MyControls from "../../components/controls/MyControls";
 import { useForm, MyForm } from "../../components/useForm";
-
 import { GlobalContext } from "../../context/GlobalState";
+import * as productService from "../../services/productService";
 
 export const EntryControls = () => {
   const { addProduct, errorX } = useContext(GlobalContext);
@@ -15,6 +15,7 @@ export const EntryControls = () => {
     retail_price: 0,
     unit_price: 0,
     wholesale_price: 0,
+    class_id: 1
   };
 
   const { values, setValues, handleInputChange } = useForm(initialFormValues);
@@ -51,7 +52,7 @@ export const EntryControls = () => {
         </Modal.Header>
         <Modal.Body>
           <MyForm onSubmit={onSubmit}>
-            <MyInput
+            <MyControls.MyInput
               type="text"
               label="Product Name"
               name="product_name"
@@ -59,7 +60,7 @@ export const EntryControls = () => {
               onChange={handleInputChange}
               placeholder="Enter Product Name"
             />
-            <MyInput
+            <MyControls.MyInput
               type="number"
               label="Retail Price"
               name="retail_price"
@@ -67,7 +68,7 @@ export const EntryControls = () => {
               onChange={handleInputChange}
               placeholder="Enter Retail Price"
             />
-            <MyInput
+            <MyControls.MyInput
               type="number"
               label="Unit Price"
               name="unit_price"
@@ -75,13 +76,20 @@ export const EntryControls = () => {
               onChange={handleInputChange}
               placeholder="Enter Unit Price"
             />
-            <MyInput
+            <MyControls.MyInput
               type="number"
               label="Wholesale Price"
               name="wholesale_price"
               value={values.wholesale_price}
               onChange={handleInputChange}
               placeholder="Enter Wholesale Price"
+            />
+            <MyControls.MySelect
+              name="class_id"
+              label="Classification"
+              value={values.class_id}
+              onChange={handleInputChange}
+              items={productService.getClassificationCollection()}
             />
             <Button variant="primary" type="submit">
               Submit
