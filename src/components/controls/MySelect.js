@@ -9,7 +9,7 @@ export default function MySelect(props) {
               <Form.Control name={name} as="select" value={value} onChange={onChange}>
                 {items.map(
                     (item) => (
-                        <option key={item.id}>{item.text}</option>
+                        <option key={item.class_id} value={item.class_id}>{item.text}</option>
                     )
                 )}
               </Form.Control>

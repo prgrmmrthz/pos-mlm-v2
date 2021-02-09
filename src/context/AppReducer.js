@@ -13,7 +13,7 @@ const AppReducer = (state, action) => {
                     product =>product.id !== action.payload
                 )
             }
-        
+
         case 'ADD_PRODUCT':
             return {
                 ...state,
@@ -24,7 +24,7 @@ const AppReducer = (state, action) => {
                 ...state,
                 errorX: action.payload
             }
-        default: 
+        default:
             return state;
     }
 }

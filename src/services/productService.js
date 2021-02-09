@@ -1,5 +1,5 @@
 export const getClassificationCollection = () => ([
-    {id: 1, text: 'Coffee'},
-    {id: 2, text: 'Juice'},
-    {id: 3, text: 'Vitamin'},
+    {class_id: 1, text: 'Coffee'},
+    {class_id: 2, text: 'Juice'},
+    {class_id: 3, text: 'Vitamin'},
 ]);

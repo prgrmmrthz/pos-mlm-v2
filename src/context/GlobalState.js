@@ -31,8 +31,8 @@ export const GlobalProvider = ({children}) => {
                 url: '/product/index',
                 params: {
                     name_order: "asc",
-                    items_per_page: 10
-                } 
+                    items_per_page: 10000
+                }
             });
             dispatch({
                 type: 'GET_PRODUCTSLIST',
@@ -43,7 +43,7 @@ export const GlobalProvider = ({children}) => {
             dispatch({
                 type: 'PRODUCT_ERROR',
                 payload: err.response.data.message
-            }); 
+            });
         }
     }
 
@@ -58,7 +58,7 @@ export const GlobalProvider = ({children}) => {
             dispatch({
                 type: 'PRODUCT_ERROR',
                 payload: err.response.data.message
-            }); 
+            });
         }
     }
 
@@ -76,18 +76,10 @@ export const GlobalProvider = ({children}) => {
                 payload: res.data.data
             });
         } catch (err) {
-            /* MySwal.fire({
-                didOpen: () => {
-                  MySwal.clickConfirm()
-                }
-              }).then(() => {
-                return MySwal.fire(<p>{JSON.stringify(err.response.data.errors)}</p>)
-            }); */
-
             dispatch({
                 type: 'PRODUCT_ERROR',
-                payload: err.response.data.errors
-            }); 
+                payload: err.response.data
+            });
         }
     }
 
@@ -95,7 +87,7 @@ export const GlobalProvider = ({children}) => {
         <GlobalContext.Provider value={
             {
                 productsList: state.productsList,
-                error: state.error,
+                errorX: state.errorX,
                 loading: state.loading,
                 getProductsList,
                 deleteProduct,
