@@ -4,14 +4,14 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { Products } from '../pages/Products/index';
+import { Customers } from '../pages/Customers/index';
 import { Sales } from "./Sales";
 
 export const MainContent = () => {
     return (
         <Switch>
           <Route path="/products">
-            <Products />
+            <Customers />
           </Route>
           <Route path="/sales">
             <Sales />

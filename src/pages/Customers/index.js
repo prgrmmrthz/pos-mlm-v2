@@ -4,19 +4,19 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { EntryControls } from './EntryControls';
 import { Table } from './Table';
 
-export const Products = () => {
+export const Customers = () => {
     return (
         <Container fluid>
             <Row>
                 <Col sm={12}>
-                    {/* <EntryControls /> */}
+                    <EntryControls />
                 </Col>
             </Row>
             <br />
             <br />
             <Row>
                 <Col>
-                    {/* <Table /> */}
+                    <Table />
                 </Col>
             </Row>
         </Container>

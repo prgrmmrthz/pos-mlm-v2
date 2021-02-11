@@ -6,7 +6,7 @@ export const SideNav = () => {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Nav defaultActiveKey="/home" className="flex-column">
-                <Link to="/products">Products</Link>
+                <Link to="/customers">Customers</Link>
                 <Link to="/sales">Sales</Link>
             </Nav>
         </Navbar>
